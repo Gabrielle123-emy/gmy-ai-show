@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一页：初露端倪</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scene">
+        <!-- 背景 -->
+        <div class="background"></div>
+
+        <!-- 勇者和石碑 -->
+        <div class="character">
+            <img src="images/hero.png" alt="勇者" class="hero">
+            <img src="images/stone.png" alt="石碑" class="stone">
+        </div>
+
+        <!-- 文字动画 -->
+        <div class="text">
+            <p class="line line1">千年前，这片土地遭受了一场浩劫，一位勇者牺牲自己封印了邪神。</p>
+            <p class="line line2">如今，封印松动，邪神的低语再次传来……</p>
+            <p class="line line3">年轻的勇者莱恩，能否再次守护这片土地？</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+/* 通用设置 */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: black;
+}
+
+/* 场景样式 */
+.scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 背景样式 */
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('stars.jpg') no-repeat center center/cover;
+    animation: starMovement 10s infinite linear;
+}
+
+/* 动态星空背景动画 */
+@keyframes starMovement {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -1000px -1000px;
+    }
+}
+
+/* 勇者与石碑 */
+.character {
+    position: relative;
+    z-index: 1;
+}
+
+.hero {
+    width: 150px;
+    animation: heroMove 3s infinite alternate;
+}
+
+.stone {
+    width: 300px;
+    position: absolute;
+    bottom: 0;
+    left: -50px;
+    z-index: 0;
+}
+
+/* 动态沙尘 */
+@keyframes heroMove {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-5px);
+    }
+}
+
+/* 文字样式 */
+.text {
+    position: absolute;
+    bottom: 10%;
+    width: 80%;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    z-index: 2;
+}
+
+.line {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.line1 {
+    animation: fadeIn 3s ease-out 0.5s forwards;
+}
+
+.line2 {
+    animation: fadeIn 3s ease-out 4s forwards;
+}
+
+.line3 {
+    animation: fadeIn 3s ease-out 7s forwards;
+}
+
+/* 文字淡入效果 */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Scene Loaded. Let the adventure begin!");
+    // 可在此添加更多交互逻辑，比如用户点击启动特效等
+});
